@@ -130,7 +130,9 @@ NOTES:
  *   Rating: 1
  */
 int bitAnd(int x, int y) {
-  return 2;
+  int notx=~x;
+  int noty=~y;
+  return ~(notx&noty);
 }
 /* 
  * bitXor - x^y using only ~ and & 
