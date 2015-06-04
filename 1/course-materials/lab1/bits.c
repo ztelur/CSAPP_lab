@@ -142,7 +142,9 @@ int bitAnd(int x, int y) {
  *   Rating: 1
  */
 int bitXor(int x, int y) {
-  return 2;
+  int notx=~x;
+  int noty=~y;
+  return ~(notx|noty);
 }
 /* 
  * thirdBits - return word with every third bit (starting from the LSB) set to 1
@@ -152,19 +154,29 @@ int bitXor(int x, int y) {
  *   Rating: 1
  */
 int thirdBits(void) {
-  return 2;
+  int x=0;
+  x<<2;
+  x=x+1;
+  x<<2;
+  x=x+1;
+  x<<2;
+  return x;
 }
 // Rating: 2
 /* 
  * fitsBits - return 1 if x can be represented as an 
- *  n-bit, two's complement integer.
+ *  n-bit, two's complement integer.  complement 
  *   1 <= n <= 32
  *   Examples: fitsBits(5,3) = 0, fitsBits(-4,3) = 1
  *   Legal ops: ! ~ & ^ | + << >>
  *   Max ops: 15
  *   Rating: 2
+ *  
+ *   check the n-bit two's complement range  -2^(n-1)~2^(n-1) exmaple n=3 -4~3
+ *   if x is among that range;
  */
 int fitsBits(int x, int n) {
+  
   return 2;
 }
 /* 
@@ -174,9 +186,11 @@ int fitsBits(int x, int n) {
  *  Legal ops: ! ~ & ^ | + << >>
  *  Max ops: 10
  *  Rating: 2
+ *  check the top bit
  */
 int sign(int x) {
-  return 2;
+  x>>32;  
+  return x;
 }
 /* 
  * getByte - Extract byte n from word x
@@ -187,6 +201,8 @@ int sign(int x) {
  *   Rating: 2
  */
 int getByte(int x, int n) {
+  x>>n*4;
+  
   return 2;
 }
 // Rating: 3
